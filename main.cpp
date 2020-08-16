@@ -50,6 +50,25 @@ typedef struct {
     double mat[M][N];
 } Tableau;
 
+void nhap_tableau(Tableau *tab) {
+    int err, i, j;
+    memset(tab, 0, sizeof(*tab));
+//    err = fscanf(fp, "%d %d", &tab->m, &tab->n);
+    printf("Nhap Kích thước Ma Trận MxN:");
+    scanf("%d %d", &tab->m, &tab->n);
+    printf("Kich thuoc ma tran m=%d n=%d \n", tab->m, tab->n);
+
+    for(i=0;i<tab->m; i++) {
+        printf("Nhập dữ liệu cho hàng thứ %d\n", i + 1);
+        for(j=0;j<tab->n; j++) {
+            printf("Nhap x[%d][%d]=", i, j);
+            err = scanf("%lf", &tab->mat[i][j]);
+            if (err == 0 || err == EOF) {
+                printf("Cannot read A[%d][%d]\n", i, j); exit(1);
+            }
+        }
+    }
+}
 void nl(int k){ int j; for(j=0;j<k;j++) putchar('-'); putchar('\n'); }
 
 void print_tableau(Tableau *tab, const char* mes) {
@@ -258,7 +277,7 @@ Tableau tab  = { 4, 5, {                     // Size of tableau [4 rows x 5 colu
 int main(int argc, char *argv[]){
     char *filename = "problem.txt";
         read_tableau(&tab, filename);
-
+//nhap_tableau(&tab);
     print_tableau(&tab,"Initial");
     simplex(&tab);
     return 0;
