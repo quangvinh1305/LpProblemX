@@ -276,8 +276,8 @@ Tableau tab  = { 4, 5, {                     // Size of tableau [4 rows x 5 colu
 
 int main(int argc, char *argv[]){
     char *filename = "problem.txt";
-        read_tableau(&tab, filename);
-//nhap_tableau(&tab);
+        //read_tableau(&tab, filename);
+nhap_tableau(&tab);
     print_tableau(&tab,"Initial");
     simplex(&tab);
     return 0;
